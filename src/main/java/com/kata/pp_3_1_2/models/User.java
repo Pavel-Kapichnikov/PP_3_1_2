@@ -2,6 +2,10 @@ package com.kata.pp_3_1_2.models;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.Objects;
 
@@ -11,12 +15,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Size(min = 2, max = 30, message = " Name should be between 2 and 30 characters")
+    @NotBlank(message = " Name should not be empty")
     private String name;
+    @Size(min = 2, max = 30, message = " Last Name should be between 2 and 30 characters")
+    @NotBlank(message = " Last Name should not be empty")
     private String lastName;
+    @NotNull(message = " Age should not be null")
+    @Min(value = 0, message = " Age should be greater then 0")
     private Integer age;
 
     public User() {
-
     }
 
     public User(long id, String name, String lastName, Integer age) {
